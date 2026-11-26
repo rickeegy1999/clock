@@ -1,4 +1,4 @@
-const CACHE_NAME = 'timer-pwa-v1';
+const CACHE_NAME = 'timer-pwa-v2';
 const CORE_ASSETS = [
   './',
   './index.html',
