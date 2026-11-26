@@ -4,6 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Timer, stopwatch and alarms</title>
+
+<!-- PWA & iPadOS Full-Screen Meta Tags -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f1115">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Timer">
+<link rel="apple-touch-icon" href="icon-180.png">
+
 <style>
 :root{color-scheme:dark;--bg:#0f1115;--panel:#171a21;--line:#262b35;--text:#e8eaf0;--mute:#8a92a3;--accent:#6ea8ff;--danger:#ff6b6b;--ok:#5ad19a;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -241,6 +250,13 @@ setInterval(()=>{
   tDraw();sDraw();checkAlarms();
 },100);
 tSetFromInputs();drawAlarms();sDraw();
+
+/* ---------- PWA Service Worker Registration ---------- */
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(err => console.error("SW failed:", err));
+  });
+}
 </script>
 </body>
 </html>
